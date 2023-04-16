@@ -40,7 +40,7 @@ export const gameData = [
         text: 'Guardar la llave en caso de que la necesites más tarde',
         nextMessageIndex: 5,
         score: -10,
-        advice: 'Consejo de vida',
+        advice: 'Necesitas usar la llave ahora!',
       },
     ],
   },
