@@ -5,7 +5,7 @@ import VideoPlayer from '~/components/VideoPlayer';
 const MemoizedChatBox = React.memo(ChatBox);
 
 function App() {
-  const [showChatBox, setShowChatBox] = useState(false);
+  const [showChatBox, setShowChatBox] = useState(true);
   const [isIdle, setIsIdle] = useState(false);
   const [timer, setTimer] = useState(null);
 

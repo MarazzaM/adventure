@@ -123,10 +123,10 @@ priority
     quality={100}
     style={{ opacity: 0.8, position: "absolute", zIndex: "-1" }}
   />
-  {currentMessage.text}
+  {currentMessage?.text}
 </div>
 
-          {currentMessage.options.map((option, index) => (
+          {currentMessage?.options?.map((option, index) => (
             <div
               key={index}
               className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 my-2 cursor-pointer transition-all	text-xl min-w-[50%]"
@@ -145,12 +145,12 @@ priority
         </div>
         {gameOver ? (
           <div className="bg-gray-300 p-2 rounded-lg text-gray-900 ">
-            <span className="font-medium">Game Over! Final score:</span> {score}
+            <span className="font-medium">Juego terminado! Puntaje final:</span> {score}
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 ml-4 cursor-pointer "
               onClick={handleRestartClick}
             >
-              Play Again
+              Jugar de nuevo
             </button>
           </div>
         ) : (<div></div>
