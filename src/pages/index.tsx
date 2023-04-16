@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { gameData } from '../gameData';
 import Swal from 'sweetalert2';
+import { Chivo_Mono } from 'next/font/google'
+
+const inter = Chivo_Mono({ subsets: ['latin'] })
+
+
 
 function ChatBox() {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
@@ -16,18 +21,19 @@ function ChatBox() {
   const handleOptionClick = (option) => {
     const nextMessageIndex = option.nextMessageIndex;
     const scoreDelta = option.score || 0;
-
+  
     if (nextMessageIndex === -1) {
       setGameOver(true);
     } else {
       setCurrentMessageIndex(nextMessageIndex);
       setScore(score + scoreDelta);
-      if (scoreDelta < 0 && option.advice) {
+      if (scoreDelta < 0 && option.advice && !negativeScoreIndices.includes(currentMessageIndex)) {
         setNegativeScoreIndices([...negativeScoreIndices, currentMessageIndex]);
         setNegativeScoreAdvices([...negativeScoreAdvices, option.advice]);
       }
     }
   };
+  
 
 
   function AdviceModal({ adviceText, onDismiss }) {
@@ -42,11 +48,11 @@ function ChatBox() {
         onDismiss()
       })
     }, [adviceText, onDismiss])
-  
+
     return null
   }
 
-  
+
   const handleRestartClick = () => {
     setCurrentMessageIndex(0);
     setScore(0);
@@ -62,11 +68,11 @@ function ChatBox() {
       Swal.fire({
         title: 'Sabes navegar en la web!',
         icon: 'success',
-        text:'Parece que conoces las mejores prácticas!'
+        text: 'Parece que conoces las mejores prácticas!'
       })
     }
   }
-  
+
   const handleNextAdviceClick = () => {
     if (adviceIndex < negativeScoreAdvices.length - 1) {
       setAdviceIndex(adviceIndex + 1)
@@ -74,14 +80,14 @@ function ChatBox() {
       setShowingAdvice(false)
     }
   }
-  
+
   if (showingAdvice) {
     const advice = negativeScoreAdvices[adviceIndex]
     Swal.fire({
       title: advice.title,
       text: advice.text,
       icon: 'warning',
-      confirmButtonText: 'Next',
+      confirmButtonText: 'Entendido',
       showCancelButton: false,
       showCloseButton: false,
       allowOutsideClick: false,
@@ -92,21 +98,25 @@ function ChatBox() {
       }
     })
   }
-  
+
   return (
-    <div className="flex flex-col h-screen justify-end items-center bg-gray-200">
-      <div className="flex flex-col items-center max-w-2xl">
-        <div className="w-full bg-white rounded-lg p-4 mb-2">
-          <div className="text-gray-900">{currentMessage.text}</div>
+    <div className={inter.className}>
+
+    <div className="grid  grid-cols-1	 grid-rows-1 justify-items-center		 place-items-center	 	min-h-screen  bg-[url('/44.webp')] bg-cover	bg-center	">
+      <div className="grid  grid-cols-1	 grid-rows-1 justify-items-center		 place-items-center	 w-2/3 min-h-[75%] text-center ">
+        <div className="w-full  p-4 mb-2 min-h-full grid  grid-cols-1	 grid-rows-1 justify-items-center	 place-items-center	bg-red-700 rounded text-center ">
+        <div className="text-gray-900 text-3xl w-full h-full bg-[url('/back.jpg')] bg-cover bg-center grid grid-cols-1 grid-rows-1 justify-items-center place-items-center transition-opacity">
+  {currentMessage.text}
+</div>
           {currentMessage.options.map((option, index) => (
             <div
               key={index}
-              className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 my-2 cursor-pointer"
+              className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 my-2 cursor-pointer transition-all	text-xl min-w-[50%]"
               onClick={() => handleOptionClick(option)}
             >
               {option?.text || (
                 <div
-                  className="w-full h-full "
+                  className="w-full h-full p-3"
                   onClick={handleShowResultsClick}
                 >
                   Mostrar resultados
@@ -116,22 +126,22 @@ function ChatBox() {
           ))}
         </div>
         {gameOver ? (
-          <div className="bg-gray-300 p-2 rounded-lg text-gray-900">
+          <div className="bg-gray-300 p-2 rounded-lg text-gray-900 ">
             <span className="font-medium">Game Over! Final score:</span> {score}
             <button
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 ml-4 cursor-pointer"
+              className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 ml-4 cursor-pointer "
               onClick={handleRestartClick}
             >
               Play Again
             </button>
           </div>
-        ) : (
-          <div className="bg-gray-300 p-2 rounded-lg text-gray-900">
-            <span className="font-medium">Score:</span> {score}
-          </div>
+        ) : (<div></div>
+          // <div className="bg-gray-300 p-2 rounded-lg text-gray-900">
+          //   <span className="font-medium">Score:</span> {score}
+          // </div>
         )}
       </div>
-  
+
       {showingAdvice && (
         <AdviceModal
           adviceText={negativeScoreAdvices[adviceIndex]}
@@ -139,6 +149,8 @@ function ChatBox() {
         />
       )}
     </div>
+    </div>
+
   );
 }
 
