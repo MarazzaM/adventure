@@ -123,19 +123,19 @@ function Test3() {
       Swal.fire({
         title: '¡Muy bien!',
         icon: 'success',
-        text: `Has respondido correctamente ${score} d preguntas. ¡Sigues las mejores prácticas de navegación web!`,
+        text: `Has respondido la mayoría correctamente y has obtenido ${score} puntos. ¡Sigues las mejores prácticas de navegación web!`,
       });
     } else if (score >= 50) {
       Swal.fire({
         title: '¡Bien!',
         icon: 'success',
-        text: `Has respondido correctamente ${score} reguntas. Aún puedes mejorar tu conocimiento de las mejores prácticas de navegación web.`,
+        text: `Has respondido correctamente una gran parte de las preguntas y obtuviste ${score} puntos. Aún puedes mejorar tu conocimiento de las mejores prácticas de navegación web.`,
       });
     } else {
       Swal.fire({
         title: '¡Ups!',
         icon: 'warning',
-        text: `Has respondido correctamente solo ${score} de reguntas. Te recomendamos que repases las mejores prácticas de navegación web.`,
+        text: `No has obtenido puntos esta ronda. Te recomendamos que repases las mejores prácticas de navegación web.`,
       });
     }
   };
