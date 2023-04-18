@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { gameData } from '../gameData';
 import Swal from 'sweetalert2';
 import { FaVideo, FaPhone, FaEllipsisV, FaArrowLeft } from "react-icons/fa";
@@ -15,8 +15,15 @@ function Test3() {
   const [negativeScoreAdvices, setNegativeScoreAdvices] = useState([]);
   const [adviceIndex, setAdviceIndex] = useState(0);
   const [showingAdvice, setShowingAdvice] = useState(false);
+  const chatHistoryRef = useRef(null); // create a reference to the chat history div
+
   const [chatHistory, setChatHistory] = useState([]);
 
+  // scroll to the bottom of the chat history whenever the chat history is updated
+  useEffect(() => {
+    const chatHistoryElement = chatHistoryRef.current;
+    chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight - chatHistoryElement.clientHeight;
+  }, [chatHistory]);
   const renderChatHistory = () => {
     return chatHistory.map((chat, index) => {
       return (
@@ -184,7 +191,10 @@ function Test3() {
               <FaEllipsisV className="h-6 w-6 text-white" />
             </div>
           </div>
-          <div className="flex-grow overflow-y-auto h-[80vh]">
+          <div
+          ref={chatHistoryRef} // attach the reference to the chat history div
+          className="flex-grow overflow-y-auto h-[80vh] scroll-smooth"
+        >
             <div className="flex flex-col flex-grow p-4 h-full">
               {renderChatHistory()}
               <div className="flex items-center self-start space-x-2">
@@ -208,7 +218,7 @@ function Test3() {
                       {option?.text || (
                 <div
                   className="w-full h-full p-3"
-                  onClick={handleShowResultsClick}
+                  onClick={handleShowResultsClick} 
                 >
                   Mostrar resultados
                 </div>
@@ -218,7 +228,10 @@ function Test3() {
                 
                 </div>
                 
-              </div>    {gameOver ? (
+              </div>    
+            </div>
+          </div>
+        </div>{gameOver ? (
           <div className="bg-gray-300 p-2 rounded-lg text-gray-900  text-center">
             <span className="font-medium">Juego terminado! Puntaje final:</span> {score}
             <button
@@ -233,9 +246,6 @@ function Test3() {
           //   <span className="font-medium">Score:</span> {score}
           // </div>
         )}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

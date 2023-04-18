@@ -12,7 +12,7 @@ export const gameData = [
   },
   {
     title: 'La isla misteriosa',
-    text: 'Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces?',
+    text: 'Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces? Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces?',
     options: [
       {
         text: 'Explorar la isla',
@@ -23,13 +23,13 @@ export const gameData = [
         text: 'Esperar a que alguien te encuentre',
         nextMessageIndex: 3,
         score: -10,
-        advice: 'Es poco probable que alguien te encuentre aquí. Deberías intentar buscar una forma de salir de la isla.',
+        advice: 'Es poco probable que alguien te encuentre aquí. Deberías intentar buscar una forma de salir de la isla.Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces?',
       },
     ],
   },
   {
     title: 'En busca de comida',
-    text: 'Te das cuenta de que tienes hambre y necesitas encontrar comida. Ves una fruta extraña en un árbol cercano. ¿Qué haces?',
+    text: 'Te das cuenta de que tienes hambre y necesitas encontrar comida. Ves una fruta extraña en un árbol cercano. ¿Qué haces?Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces?',
     options: [
       {
         text: 'Comer la fruta',
@@ -40,13 +40,13 @@ export const gameData = [
         text: 'Buscar otra fuente de comida',
         nextMessageIndex: 5,
         score: 20,
-        advice: 'Podría ser peligroso comer una fruta desconocida. Deberías buscar otra fuente de alimento.',
+        advice: 'Podría ser peligroso comer una fruta desconocida. Deberías buscar otra fuente de alimento.Te despiertas en una playa desconocida rodeado de palmeras y rocas. No tienes idea de cómo llegaste allí. ¿Qué haces?',
       },
     ],
   },
   {
     title: 'La fruta envenenada',
-    text: 'La fruta resulta ser venenosa y te enfermas. ¿Qué haces?',
+    text: 'La fruta resulta ser venenosa y te enfermas. ¿Qué haces? Podría ser peligroso comer una fruta desconocida. Deberías buscar otra fuente de alimento.Te despiertas en una playa',
     options: [
       {
         text: 'Intentar encontrar un antídoto en la isla',
@@ -57,7 +57,7 @@ export const gameData = [
         text: 'Esperar a que la enfermedad pase',
         nextMessageIndex: 7,
         score: -20,
-        advice: 'Es poco probable que la enfermedad pase por sí sola. Deberías intentar encontrar un antídoto.',
+        advice: 'Es poco probable que la enfermedad pase por sí sola. Deberías intentar encontrar un antídoto. Podría ser peligroso comer una fruta desconocida. Deberías buscar otra fuente de alimento.Te despiertas en una playa',
       },
     ],
   },
