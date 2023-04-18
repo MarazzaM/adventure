@@ -32,7 +32,7 @@ function Test3() {
             </div>
           </div>
           <div className="flex items-center self-end space-x-2">
-            <div className="text-white font-bold rounded-md py-2 px-4 bg-green-700">
+            <div className="text-white font-bold rounded-md py-2 px-4 my-2 bg-green-700">
               {chat.optionSelected}
             </div>
           </div>
@@ -58,16 +58,23 @@ function Test3() {
       setChatHistory([...chatHistory, currentChat]);
       setCurrentMessageIndex(nextMessageIndex);
       setScore(score + scoreDelta);
-      if (
-        scoreDelta < 0 &&
-        option.advice &&
-        !negativeScoreIndices.includes(currentMessageIndex)
-      ) {
+      if (scoreDelta < 0 && option.advice) {
+        Swal.fire({
+          title: "Cuidado",
+          text: option.advice,
+          icon: "warning",
+          confirmButtonText: "Entendido",
+          allowOutsideClick: false,
+        }).then(() => {
+          setNegativeScoreIndices([...negativeScoreIndices, currentMessageIndex]);
+          setNegativeScoreAdvices([...negativeScoreAdvices, option.advice]);
+        });
+      } else {
         setNegativeScoreIndices([...negativeScoreIndices, currentMessageIndex]);
-        setNegativeScoreAdvices([...negativeScoreAdvices, option.advice]);
       }
     }
   };
+  
   
   
 
@@ -95,19 +102,37 @@ function Test3() {
     setGameOver(false);
     setNegativeScoreIndices([]);
     setNegativeScoreAdvices([]);
+    setChatHistory([]);
   };
   const handleShowResultsClick = () => {
-    if (negativeScoreAdvices.length > 0) {
-      setShowingAdvice(true)
-      setAdviceIndex(0)
+  
+    if (score === 100) {
+      Swal.fire({
+        title: '¡Excelente!',
+        icon: 'success',
+        text: 'Has respondido todas las preguntas correctamente. ¡Eres un experto en navegación web!',
+      });
+    } else if (score >= 80) {
+      Swal.fire({
+        title: '¡Muy bien!',
+        icon: 'success',
+        text: `Has respondido correctamente ${score} d preguntas. ¡Sigues las mejores prácticas de navegación web!`,
+      });
+    } else if (score >= 50) {
+      Swal.fire({
+        title: '¡Bien!',
+        icon: 'success',
+        text: `Has respondido correctamente ${score} reguntas. Aún puedes mejorar tu conocimiento de las mejores prácticas de navegación web.`,
+      });
     } else {
       Swal.fire({
-        title: 'Sabes navegar en la web!',
-        icon: 'success',
-        text: 'Parece que conoces las mejores prácticas!'
-      })
+        title: '¡Ups!',
+        icon: 'warning',
+        text: `Has respondido correctamente solo ${score} de reguntas. Te recomendamos que repases las mejores prácticas de navegación web.`,
+      });
     }
-  }
+  };
+  
 
   const handleNextAdviceClick = () => {
     if (adviceIndex < negativeScoreAdvices.length - 1) {
@@ -177,14 +202,37 @@ function Test3() {
                   {currentMessage?.options?.map((option, index) => (
                     <button
                       key={index}
-                      className="text-white font-bold rounded-md py-2 px-4 bg-green-500 hover:bg-green-700"
+                      className="text-white font-bold rounded-md py-2 px-4 bg-green-500 hover:bg-green-700 text-right w-full"
                       onClick={() => handleOptionClick(option)}
                     >
-                      {option.text}
+                      {option?.text || (
+                <div
+                  className="w-full h-full p-3"
+                  onClick={handleShowResultsClick}
+                >
+                  Mostrar resultados
+                </div>
+              )}
                     </button>
                   ))}
+                
                 </div>
-              </div>
+                
+              </div>    {gameOver ? (
+          <div className="bg-gray-300 p-2 rounded-lg text-gray-900  text-center">
+            <span className="font-medium">Juego terminado! Puntaje final:</span> {score}
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 ml-4 cursor-pointer "
+              onClick={handleRestartClick}
+            >
+              Jugar de nuevo
+            </button>
+          </div>
+        ) : (<div></div>
+          // <div className="bg-gray-300 p-2 rounded-lg text-gray-900">
+          //   <span className="font-medium">Score:</span> {score}
+          // </div>
+        )}
             </div>
           </div>
         </div>

@@ -152,7 +152,7 @@ export const gameData = [
         options: [
         {
         text: 'Intentar arreglar el barco y escapar de la isla',
-        nextMessageIndex: 16,
+        nextMessageIndex: 11,
         score: 50,
         },
         {
@@ -173,7 +173,7 @@ export const gameData = [
         },
         {
         text: 'Refugiarte en la cueva',
-        nextMessageIndex: 18,
+        nextMessageIndex: 11,
         score: 30,
         },
         ],
