@@ -217,7 +217,7 @@ function Test3() {
                     >
                       {option?.text || (
                 <div
-                  className="w-full h-full p-3"
+                  className="w-full h-full p-5 py-8"
                   onClick={handleShowResultsClick} 
                 >
                   Mostrar resultados
