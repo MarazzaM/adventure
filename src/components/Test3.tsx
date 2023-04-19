@@ -170,8 +170,16 @@ function Test3() {
   return (
     <div className="max-h-screen">
       <div className="flex flex-col justify-center items-center flex-grow overflow-y-auto">
-        <div className="max-w-lg rounded-2xl shadow-lg bg-gray-100 w-full flex-grow flex flex-col">
-        <div className="bg-[#075E54] p-3 flex items-center justify-between rounded-t-2xl">
+      <div className="marvel-device iphone8plus black">
+    <div className="top-bar"></div>
+    <div className="sleep"></div>
+    <div className="volume"></div>
+    <div className="camera"></div>
+    <div className="sensor"></div>
+    <div className="speaker"></div>
+    <div className="screen">
+    <div className="max-w-lg rounded-2xl shadow-lg bg-gray-100 w-full flex-grow flex flex-col h-full">
+        <div className="bg-[#075E54] p-4 flex items-center justify-between ">
           <div className="flex flex-row justify-center items-center">
           <FaArrowLeft className="h-6 w-6 text-white p-1" />
           <img
@@ -193,7 +201,7 @@ function Test3() {
           </div>
           <div
           ref={chatHistoryRef} // attach the reference to the chat history div
-          className="flex-grow overflow-y-auto h-[80vh] scroll-smooth"
+          className="flex-grow overflow-y-auto h-full scroll-smooth"
         >
             <div className="flex flex-col flex-grow p-4 h-full">
               {renderChatHistory()}
@@ -231,7 +239,8 @@ function Test3() {
               </div>    
             </div>
           </div>
-        </div>{gameOver ? (
+        </div>
+        {gameOver ? (
           <div className="bg-gray-300 p-2 rounded-lg text-gray-900  text-center">
             <span className="font-medium">Juego terminado! Puntaje final:</span> {score}
             <button
@@ -246,6 +255,12 @@ function Test3() {
           //   <span className="font-medium">Score:</span> {score}
           // </div>
         )}
+    </div>
+    <div className="home"></div>
+    <div className="bottom-bar"></div>
+</div>
+
+        
       </div>
     </div>
   );
