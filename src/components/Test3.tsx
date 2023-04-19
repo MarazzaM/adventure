@@ -217,22 +217,26 @@ function Test3() {
               </div>
               <div className="flex items-end self-end space-x-2">
                 <div className="bg-green-500 rounded-lg p-2 my-2">
-                  {currentMessage?.options?.map((option, index) => (
-                    <button
-                      key={index}
-                      className="text-white font-bold rounded-md py-2 px-4 bg-green-500 hover:bg-green-700 text-right w-full"
-                      onClick={() => handleOptionClick(option)}
-                    >
-                      {option?.text || (
-                <div
-                  className="w-full h-full p-5 py-8 text-center"
-                  onClick={handleShowResultsClick} 
-                >
-                  Mostrar <br /> resultados
-                </div>
-              )}
-                    </button>
-                  ))}
+                {currentMessage?.options?.map((option, index) => (
+    <button
+        key={index}
+        className="text-white font-bold  py-2 px-4 bg-green-500 hover:bg-green-700 text-right w-full"
+        onClick={() => handleOptionClick(option)}
+        style={{
+            borderBottom: index === currentMessage.options.length - 1 ? "none" : "1.3px solid #f6f6f6 ",
+        }}
+    >
+        {option?.text || (
+            <div
+                className="w-full h-full p-5 py-8 text-center"
+                onClick={handleShowResultsClick} 
+            >
+                Mostrar <br /> resultados
+            </div>
+        )}
+    </button>
+))}
+
                 
                 </div> 
                 {gameOver ? (

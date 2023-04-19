@@ -126,22 +126,34 @@ priority
   {currentMessage?.text}
 </div>
 
-          {currentMessage?.options?.map((option, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 my-2 cursor-pointer transition-all	text-xl min-w-[50%]"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option?.text || (
-                <div
-                  className="w-full h-full p-3"
-                  onClick={handleShowResultsClick}
-                >
-                  Mostrar resultados
-                </div>
-              )}
-            </div>
-          ))}
+<div className="flex flex-col">
+  {currentMessage?.options?.map((option, index) => (
+    <div
+      key={index}
+      className="flex items-center justify-center relative"
+    >
+      <div
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 my-2 cursor-pointer transition-all text-xl min-w-[50%]"
+        onClick={() => handleOptionClick(option)}
+      >
+        {option?.text || (
+          <div
+            className="w-full h-full p-3"
+            onClick={handleShowResultsClick}
+          >
+            Mostrar resultados
+          </div>
+        )}
+      </div>
+      {index < currentMessage.options.length - 1 && (
+        <div
+          className="absolute top-0 right-0 h-full w-1 bg-gray-400"
+        ></div>
+      )}
+    </div>
+  ))}
+</div>
+
         </div>
         {gameOver ? (
           <div className="bg-gray-300 p-2 rounded-lg text-gray-900 ">
