@@ -170,7 +170,7 @@ function Test3() {
   return (
     <div className="max-h-screen">
       <div className="flex flex-col justify-center items-center flex-grow overflow-y-auto">
-      <div className="marvel-device iphone8plus black">
+      <div style={{ height: '660px'}} className="marvel-device iphone8plus black">
     <div className="top-bar"></div>
     <div className="sleep"></div>
     <div className="volume"></div>
@@ -225,16 +225,30 @@ function Test3() {
                     >
                       {option?.text || (
                 <div
-                  className="w-full h-full p-5 py-8"
+                  className="w-full h-full p-5 py-8 text-center"
                   onClick={handleShowResultsClick} 
                 >
-                  Mostrar resultados
+                  Mostrar <br /> resultados
                 </div>
               )}
                     </button>
                   ))}
                 
-                </div>
+                </div> 
+                {gameOver ? (
+           <div  className="bg-blue-500 rounded-lg p-2 my-2">
+             <button
+              className="text-white font-bold rounded-md py-2 px-4 bg-blue-500 hover:bg-blue-700 text-right w-full"
+              onClick={handleRestartClick}
+            >
+              <div className='w-full h-full p-5 py-8 text-center'>Jugar de <br /> nuevo</div>
+            </button>
+           </div>
+        ) : (<div></div>
+          // <div className="bg-gray-300 p-2 rounded-lg text-gray-900">
+          //   <span className="font-medium">Score:</span> {score}
+          // </div>
+        )}
                 
               </div>    
             </div>
