@@ -5,8 +5,6 @@ import { FaVideo, FaPhone, FaEllipsisV, FaArrowLeft } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 
 
-
-
 function Test3() {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -138,33 +136,46 @@ function Test3() {
   };
   
   const handleShowResultsClick = () => {
-  
+    const url = "./frame.png"; // Replace with your results URL
+    const qrCodeSize = 200;
+    const paginaweb="www.google.com"
+    // Generate the QR code as a data URL
+
+    // Generate the HTML for the QR code image
+    const qrCodeImageHtml = `<div class="qr-code-container">
+    <img src="${url}" alt="QR code" class="m-auto" width="${qrCodeSize}" height="${qrCodeSize}"/>
+    <b>${paginaweb}</b>
+    <div>Visita nuestra página para tips en seguridad</div>
+</div>`;  
     if (score === 100) {
       Swal.fire({
-        title: '¡Excelente!',
-        icon: 'success',
-        text: 'Has respondido todas las preguntas correctamente. ¡Eres un experto en navegación web!',
+        title: "¡Excelente!",
+        icon: "success",
+        html: "Has respondido todas las preguntas correctamente. ¡Eres un experto en navegación web!<br>" + qrCodeImageHtml,
       });
     } else if (score >= 80) {
       Swal.fire({
-        title: '¡Muy bien!',
-        icon: 'success',
-        text: `Has respondido la mayoría correctamente y has obtenido ${score} puntos. ¡Sigues las mejores prácticas de navegación web!`,
+        title: "¡Muy bien!",
+        icon: "success",
+        html: "Has respondido la mayoría correctamente y has obtenido " + score + " puntos. ¡Sigues las mejores prácticas de navegación web!<br>" + qrCodeImageHtml,
       });
     } else if (score >= 50) {
       Swal.fire({
-        title: '¡Bien!',
-        icon: 'success',
-        text: `Has respondido correctamente una gran parte de las preguntas y obtuviste ${score} puntos. Aún puedes mejorar tu conocimiento de las mejores prácticas de navegación web.`,
+        title: "¡Bien!",
+        icon: "success",
+        html: "Has respondido correctamente una gran parte de las preguntas y obtuviste " + score + " puntos. ¡Sigue mejorando!<br>" + qrCodeImageHtml,
       });
     } else {
       Swal.fire({
-        title: '¡Ups!',
-        icon: 'warning',
-        text: `No has obtenido puntos esta ronda. Te recomendamos que repases las mejores prácticas de navegación web.`,
+        title: "Lo siento",
+        icon: "error",
+        html: "Has respondido correctamente solo " + score + " de las preguntas. ¡Sigue aprendiendo sobre las mejores prácticas de navegación web!<br>" + qrCodeImageHtml,
       });
     }
+    
   };
+  
+  
   
 
   const handleNextAdviceClick = () => {
