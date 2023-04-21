@@ -274,7 +274,7 @@ function Test3() {
           // </div>
         )}
     </div>
-    <div className="home"></div>
+    <a href='http://fdl/' className="home"></a>
     <div className="bottom-bar"></div>
 </div>
 
