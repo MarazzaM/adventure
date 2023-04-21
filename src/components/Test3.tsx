@@ -16,9 +16,33 @@ function Test3() {
   const [adviceIndex, setAdviceIndex] = useState(0);
   const [showingAdvice, setShowingAdvice] = useState(false);
   const chatHistoryRef = useRef(null); // create a reference to the chat history div
+  const [lastUserInteractionTime, setLastUserInteractionTime] = useState(Date.now()); // initialize to current time
 
   const [chatHistory, setChatHistory] = useState([]);
 
+    // start the timer to reset the game after 1 minute of inactivity
+    useEffect(() => {
+      const handleUserActivity = () => {
+        setLastUserInteractionTime(Date.now());
+      };
+    
+      const intervalId = setInterval(() => {
+        if (Date.now() - lastUserInteractionTime > 90000) {
+          handleRestartClick();
+        }
+      }, 1000);
+    
+      document.addEventListener("mousedown", handleUserActivity);
+      document.addEventListener("keydown", handleUserActivity);
+    
+      return () => {
+        clearInterval(intervalId);
+        document.removeEventListener("mousedown", handleUserActivity);
+        document.removeEventListener("keydown", handleUserActivity);
+      };
+    }, [lastUserInteractionTime]);
+    
+    
   // scroll to the bottom of the chat history whenever the chat history is updated
   useEffect(() => {
     const chatHistoryElement = chatHistoryRef.current;
@@ -104,6 +128,7 @@ function Test3() {
 
 
   const handleRestartClick = () => {
+    Swal.close(); // close any open modals
     setCurrentMessageIndex(0);
     setScore(0);
     setGameOver(false);
@@ -111,6 +136,7 @@ function Test3() {
     setNegativeScoreAdvices([]);
     setChatHistory([]);
   };
+  
   const handleShowResultsClick = () => {
   
     if (score === 100) {
