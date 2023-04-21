@@ -205,9 +205,9 @@ function Test3() {
   }
 
   return (
-    <div className="max-h-screen">
-      <div className="flex flex-col justify-center items-center flex-grow overflow-y-auto">
-      <div style={{ height: '660px'}} className="marvel-device iphone8plus black">
+    <div className="h-full">
+      <div className="flex flex-col justify-center items-center flex-grow overflow-y-auto h-full">
+      <div style={{ height: '1550px', width:'80vw'}} className="marvel-device iphone8plus black ">
     <div className="top-bar"></div>
     <div className="sleep"></div>
     <div className="volume"></div>
@@ -215,7 +215,7 @@ function Test3() {
     <div className="sensor"></div>
     <div className="speaker"></div>
     <div className="screen">
-    <div className="max-w-lg rounded-2xl shadow-lg bg-gray-100 w-full flex-grow flex flex-col h-full">
+    <div className="w-full rounded-2xl shadow-lg bg-gray-100 m-0 flex-grow flex flex-col h-full ">
         <div className="bg-[#075E54] p-4 flex items-center justify-between ">
           <div className="flex flex-row justify-center items-center">
           <FaArrowLeft className="h-6 w-6 text-white p-1" />

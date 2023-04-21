@@ -7,7 +7,7 @@ const inter = Chivo_Mono({ subsets: ['latin'] })
 
 function ConTopBar() {
   return (
-    <div className={inter.className}>
+    <div className={inter.className}  style={{ height: '100vh', width:'100vw'}}>
         <TopBar />
         <Test3 />
     </div>
